@@ -880,3 +880,44 @@ nav a.active {
         text-align: center;
     }
 }
+/* HERO FIXES*/
+/* --- ADD THIS CODE INSIDE YOUR @media (max-width: 768px) BLOCK --- */
+
+    /* --- HERO SECTION FIXES --- */
+    #hero h1 {
+        font-size: 2.5rem; 
+        line-height: 1.2;
+    }
+
+    /* --- "WHY US" SECTION FIXES (THIS IS THE KEY PART) --- */
+    .content-split {
+        flex-direction: column; 
+        text-align: center; 
+        gap: 40px; 
+    }
+
+    .info-left h2::after {
+        left: 50%; 
+        transform: translateX(-50%);
+    }
+
+    .stats-right ul {
+        margin-top: 0; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; 
+    }
+
+    .stats-right li {
+        justify-content: center; 
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .stats-right .number {
+        font-size: 3rem;
+        min-width: unset;
+    }
+
+/* --- CONTINUE WITH YOUR EXISTING MOBILE CSS... --- */
