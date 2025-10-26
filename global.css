@@ -920,4 +920,90 @@ nav a.active {
         min-width: unset;
     }
 
-/* --- CONTINUE WITH YOUR EXISTING MOBILE CSS... --- */
+/* --- COOL SCROLLIN EFFECT --- */
+/* --- Cool Scrolling Benefits Section --- */
+
+.benefits-section {
+    /* overflow: hidden; is important to contain animations */
+    overflow: hidden;
+    padding: 20px 0; /* Add some vertical spacing */
+}
+
+.benefits-grid {
+    /* 1. HORIZONTAL SCROLLING ON MOBILE */
+    display: flex;         /* Enables flexbox layout for horizontal arrangement */
+    overflow-x: auto;      /* Creates horizontal scroll if content overflows */
+    gap: 20px;             /* Space between cards */
+    
+    /* Makes scrolling "snap" to the start of each card for a clean UX */
+    scroll-snap-type: x mandatory; 
+    
+    /* Add padding so cards don't touch screen edges. Negative margin makes the scroll area full-width. */
+    padding: 20px;
+    margin: 0 -20px; /* Counteracts the parent .container's padding */
+
+    /* Hide the default scrollbar for a cleaner look */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.benefits-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.benefit-card {
+    /* Sizing for the horizontal scroller on mobile */
+    flex: 0 0 80%; /* Don't grow, don't shrink, base width is 80% */
+    scroll-snap-align: start; /* Each card snaps to the start of the viewport */
+
+    /* Card Styling */
+    background: rgba(255, 255, 255, 0.05); /* Subtle background for dark mode */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 30px;
+    
+    /* 2. ANIMATION SETUP */
+    opacity: 0;                  /* Initially hidden */
+    transform: translateY(30px); /* Initially moved down */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* This class will be added by JavaScript when the card is in view */
+.benefit-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add a slight "staggered" delay to the animation for a cooler effect */
+.benefit-card:nth-child(2).is-visible {
+    transition-delay: 0.1s;
+}
+.benefit-card:nth-child(3).is-visible {
+    transition-delay: 0.2s;
+}
+
+.benefit-card h3 {
+    margin-top: 0;
+    color: #ffffff; /* White text for dark background */
+    font-size: 1.4rem;
+}
+
+.benefit-card p {
+    line-height: 1.6;
+    color: #c9d1d9; /* Lighter grey text for dark background */
+}
+
+/* --- DESKTOP VIEW: Switch back to a grid --- */
+@media (min-width: 992px) {
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: visible; /* Disable horizontal scrolling */
+        padding: 0;          /* Reset mobile padding */
+        margin: 0;           /* Reset mobile margin */
+    }
+
+    /* flex-basis is ignored by grid, so no changes needed for .benefit-card */
+}
